@@ -6,7 +6,6 @@ import { profile, skills, projects } from '../data';
 const title = `${profile.name} | Data Analyst`;
 const description = `${profile.name} - ${profile.tagline}. Portfolio of SQL, Tableau, Excel, and Python projects.`;
 const ogImage = new URL(projects[0].image.src, Astro.site ?? Astro.url).href;
-const pad = (n: number) => String(n).padStart(2, '0');
 ---
 <!doctype html>
 <html lang="en">
@@ -23,7 +22,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet" />
     <script is:inline>
       try {
         var t = localStorage.getItem('theme');
@@ -49,35 +48,30 @@ const pad = (n: number) => String(n).padStart(2, '0');
     <header id="top" class="relative isolate overflow-hidden">
       <div class="hero-bg absolute inset-0 -z-10"></div>
       <div class="mx-auto max-w-6xl px-6 pb-28 pt-40 sm:pb-40 sm:pt-56">
-        <p class="reveal text-caption font-semibold uppercase text-accent">Data Analyst &middot; Allen, TX</p>
-        <h1 class="reveal mt-6 text-hero font-extrabold" style="--d:80ms">{profile.name}</h1>
-        <p class="reveal mt-8 max-w-2xl text-lead text-muted" style="--d:160ms">{profile.tagline}.</p>
-        <ul class="reveal mt-8 flex flex-wrap gap-2" style="--d:240ms">
-          {skills.map((s) => <li class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm font-medium">{s}</li>)}
-        </ul>
-        <div class="reveal mt-12 flex flex-wrap gap-4" style="--d:320ms">
-          <a href="#projects" class="rounded-full bg-accent px-7 py-3 font-semibold text-accent-fg transition hover:opacity-90">View projects</a>
-          <a href="#contact" class="rounded-full border border-line px-7 py-3 font-semibold transition hover:border-accent hover:text-accent">Get in touch</a>
+        <h1 class="reveal text-hero font-extrabold" style="--d:0ms">{profile.name}</h1>
+        <p class="reveal mt-8 max-w-xl text-lead text-muted" style="--d:120ms">{profile.tagline}.</p>
+        <p class="reveal mt-6 text-lg font-medium" style="--d:200ms">{skills.join(', ')}</p>
+        <div class="reveal mt-12 flex flex-wrap gap-4" style="--d:280ms">
+          <a href="#projects" class="rounded-md bg-accent px-7 py-3 font-semibold text-accent-fg transition hover:opacity-90">View projects</a>
+          <a href="#contact" class="rounded-md border border-line px-7 py-3 font-semibold transition hover:border-accent hover:text-accent">Get in touch</a>
         </div>
       </div>
     </header>
 
     <main>
       <section id="projects" class="mx-auto max-w-6xl scroll-mt-16 px-6 py-24">
-        <p class="reveal text-caption font-semibold uppercase text-accent">Selected work</p>
-        <h2 class="reveal mt-3 text-display font-extrabold" style="--d:60ms">Projects</h2>
+        <h2 class="text-display font-extrabold">Projects</h2>
         <div class="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
-            <article class="reveal group flex flex-col overflow-hidden rounded-3xl border border-line bg-surface shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-accent/10" style={`--d:${(i % 3) * 80}ms`}>
-              <div class="relative aspect-[16/10] overflow-hidden border-b border-line bg-bg">
-                <Image src={p.image} alt={`${p.title} screenshot`} width={800} loading={i < 3 ? 'eager' : 'lazy'} class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105" />
+            <article class={`group flex flex-col overflow-hidden rounded-lg border border-line bg-surface transition-colors hover:border-accent ${i === 0 ? "lg:col-span-2 lg:flex-row" : ""}`}>
+              <div class={`relative overflow-hidden border-b border-line bg-bg ${i === 0 ? "aspect-[16/10] lg:aspect-auto lg:w-3/5 lg:border-b-0 lg:border-r" : "aspect-[16/10]"}`}>
+                <Image src={p.image} alt={`${p.title} screenshot`} width={1000} loading={i < 3 ? 'eager' : 'lazy'} class="h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.02]" />
               </div>
-              <div class="flex flex-1 flex-col p-7">
-                <span class="text-caption font-semibold uppercase text-muted">{pad(i + 1)}</span>
-                <h3 class="mt-2 text-xl font-semibold tracking-tight">{p.title}</h3>
-                <p class="mt-3 flex-1 leading-relaxed text-muted">{p.description}</p>
-                <a href={p.link} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 font-semibold text-accent">
-                  View Project <span aria-hidden="true" class="transition group-hover:translate-x-1">&rarr;</span><span class="sr-only"> ({p.title}, opens in new tab)</span>
+              <div class={`flex flex-1 flex-col p-6 ${i === 0 ? "lg:justify-center lg:p-10" : ""}`}>
+                <h3 class={`${i === 0 ? "text-3xl" : "text-xl"} font-bold tracking-tight`}>{p.title}</h3>
+                <p class="mt-3 flex-1 max-w-prose leading-relaxed text-muted">{p.description}</p>
+                <a href={p.link} target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex font-semibold text-accent underline decoration-2 underline-offset-4">
+                  View Project <span class="sr-only"> ({p.title}, opens in new tab)</span>
                 </a>
               </div>
             </article>
@@ -88,9 +82,8 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
     <footer id="contact" class="scroll-mt-16 border-t border-line">
       <div class="mx-auto max-w-6xl px-6 py-24">
-        <p class="reveal text-caption font-semibold uppercase text-accent">Contact</p>
-        <h2 class="reveal mt-3 text-display font-extrabold" style="--d:60ms">Get in touch</h2>
-        <ul class="reveal mt-10 space-y-3 text-lead" style="--d:120ms">
+        <h2 class="text-display font-extrabold">Get in touch</h2>
+        <ul class="mt-10 space-y-3 text-lead" >
           <li><a class="transition hover:text-accent" href={`mailto:${profile.email}`}>{profile.email}</a></li>
           <li><a class="transition hover:text-accent" href={`tel:${profile.phone.replace(/[^\d]/g, '')}`}>{profile.phone}</a></li>
           <li class="text-muted">{profile.address}</li>
