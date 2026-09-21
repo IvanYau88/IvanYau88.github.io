@@ -12,4 +12,6 @@ npm run build    # static output in dist/
 
 ## Deployment
 
-Deploys to [Vercel](https://vercel.com) with zero config (static Astro build).
+Deployed to [GitHub Pages](https://pages.github.com) at https://ivanyau88.github.io/.
+The workflow in `.github/workflows/deploy.yml` builds the site and publishes `dist/` on every push to `main`.
+In the repository settings, Pages > Build and deployment > Source must be set to "GitHub Actions".
