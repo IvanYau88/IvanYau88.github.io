@@ -3,8 +3,8 @@ import '../styles.css';
 import { Image } from 'astro:assets';
 import { profile, skills, projects } from '../data';
 
-const title = `${profile.name} | Data Analyst`;
-const description = `${profile.name} - ${profile.tagline}. Portfolio of SQL, Tableau, Excel, and Python projects.`;
+const title = profile.name;
+const description = profile.intro.split('. ')[0] + '.';
 const ogImage = new URL(projects[0].image.src, Astro.site ?? Astro.url).href;
 ---
 <!doctype html>
@@ -20,6 +20,7 @@ const ogImage = new URL(projects[0].image.src, Astro.site ?? Astro.url).href;
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content={description} />
     <meta name="theme-color" content="#f4f6f2" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0c1411" media="(prefers-color-scheme: dark)" />
     <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
