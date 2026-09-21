@@ -50,7 +50,7 @@ const ogImage = new URL(projects[0].image.src, Astro.site ?? Astro.url).href;
       <div class="hero-bg absolute inset-0 -z-10" aria-hidden="true"></div>
       <div class="mx-auto max-w-6xl px-6 pb-28 pt-40 sm:pb-40 sm:pt-56">
         <h1 class="reveal text-hero font-extrabold" style="--d:0ms">{profile.name}</h1>
-        <p class="reveal mt-8 max-w-xl text-pretty text-lead text-muted" style="--d:120ms">{profile.tagline}.</p>
+        <p class="reveal mt-8 max-w-3xl text-pretty text-base leading-relaxed text-muted sm:text-lg lg:text-xl" style="--d:120ms">{profile.intro}</p>
         <ul class="reveal mt-6 flex flex-wrap gap-2" style="--d:200ms" aria-label="Skills">
           {skills.map((s) => <li class="rounded-full border border-line bg-surface px-4 py-1.5 text-sm font-medium">{s}</li>)}
         </ul>

@@ -8,6 +8,7 @@ import python from './assets/projects/Python.jpg';
 export const profile = {
   name: 'Ivan Yau',
   tagline: 'Data Analyst skilled in SQL, Tableau, Excel, and Python',
+  intro: "I'm Ivan, a master's student in Business Analytics and AI at UT Dallas, focused on building AI-powered software and data products. This summer I was an AI Engineer Intern at Samsung, where I built a multi-agent dashboard that explains why retail performance varies and turns the answer into slides and an interactive map, and I automated reporting that used to take over an hour down to under three minutes. Before that, as a data analyst at Globe Life, I delivered dashboards and a database migration that cut infrastructure costs by roughly $1M a year. I'm seeking a full-time, new-grad software or AI engineering role where I can build practical AI systems and keep growing as an engineer.",
   email: 'ivanyau88@yahoo.com',
   phone: '(469) 207-9773',
   address: 'Allen, TX 75013',
